@@ -66,7 +66,6 @@ class Afip
         $this->url->wsbfev = 'https://servicios1.afip.gov.ar/wsbfev1/service.asmx'; // Bonos fiscales
         $this->url->wsseg = 'https://servicios1.afip.gov.ar/wsseg/service.asmx'; // Seguros de caución
         
-        
         // URLs homologación
         if ($this->homo) {
             $this->url->wsaa = 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms';
@@ -78,8 +77,6 @@ class Afip
             
             $this->url->wsbfev = 'https://wswhomo.afip.gov.ar/wsbfev1/service.asmx';
             $this->url->wsseg = 'https://wswhomo.afip.gov.ar/wsseg/service.asmx';
-            
-            
         }
         
         return $this;

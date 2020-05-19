@@ -174,7 +174,7 @@ class Afip
     }
     
     // CONSULTAR SERVICIOS /////////////////////////////////////////////
-    public function request($serv, $op, $params = null)
+    public function req($serv, $op, $params = null)
     {
         $out = null;
         $ta = $this->auth($serv);

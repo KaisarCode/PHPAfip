@@ -38,7 +38,7 @@ $afip = new Afip(array(
     'crt_file' => 'path/to/cert.crt',
     'crt_pass' => ''
 ));
-$res = $afip->request('wsfe', 'FEParamGetTiposMonedas');
+$res = $afip->req('wsfe', 'FEParamGetTiposMonedas');
 
 header('Content-Type: application/json');
 echo json_encode($res, JSON_PRETTY_PRINT);

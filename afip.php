@@ -1,7 +1,7 @@
 <?php
 /**
-# AFIP.PHP - 2019 KaisarCode.com
-Clase conectora con servicios de Afip.
+# PHPAfip - 2019 KaisarCode.com
+Clase conectora con los servicios de Afip.
 
 Esta clase incluye los servicios más utilizados:
 - Facturación electrónica A, B, C, E, T, etc...

@@ -209,6 +209,19 @@ class Afip
                             $params['authRequest']['cuitRepresentada'] = $this->cuit;
                         }
                     }
+                    if (
+                    $serv == 'wsci'
+                    ) {
+                        if (!isset($params['token'])) {
+                            $params['token'] = $creds->token;
+                        }
+                        if (!isset($params['sign'])) {
+                            $params['sign'] = $creds->sign;
+                        }
+                        if (!isset($params['sign'])) {
+                            $params['cuitRepresentada'] = $this->cuit;
+                        }
+                    }
                     
                     $wsdl_file = $this->getWSDL($serv);
                     $soap = new SoapClient($wsdl_file, array(

@@ -23,3 +23,24 @@ https://www.afip.gob.ar/ws/documentacion/
 
 Para conocer las definiciones de más servicios, diríjase a:
 https://www.afip.gob.ar/ws/documentacion/catalogo.asp
+
+# Utilización
+
+```php
+<?php
+include('afip.php');
+$afip = new Afip(array(
+    'homo' => true,
+    'cuit' => 'XX-XXXXXXXX-X',
+    'dir_auth' => 'data',
+    'dir_wsdl' => 'wsdl',
+    'key_file' => 'path/to/rsa_key',
+    'crt_file' => 'path/to/cert.crt',
+    'crt_pass' => ''
+));
+$res = $afip->request('wsfe', 'FEParamGetTiposMonedas');
+
+header('Content-Type: application/json');
+echo json_encode($res, JSON_PRETTY_PRINT);
+?>
+```

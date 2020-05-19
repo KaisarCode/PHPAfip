@@ -23,15 +23,15 @@ class Afip
         $opts = (object) $opts;
         if (!isset($opts->homo)) $opts->homo = true;
         if (!isset($opts->cuit)) $opts->cuit = '';
-        if (!isset($opts->dir)) $opts->dir = '';
-        if (!isset($opts->wsdl)) $opts->wsdl = '';
+        if (!isset($opts->dir_auth)) $opts->dir_auth = '';
+        if (!isset($opts->dir_wsdl)) $opts->dir_wsdl = '';
         if (!isset($opts->key_file)) $opts->key_file = 'key';
         if (!isset($opts->crt_file)) $opts->crt_file = 'crt';
         if (!isset($opts->crt_pass)) $opts->crt_pass = '';
         
         $this->homo = (boolean) $opts->homo;
-        $this->dir = realpath($opts->dir);
-        $this->wsdl = realpath($opts->wsdl);
+        $this->dir_auth = realpath($opts->dir_auth);
+        $this->dir_wsdl = realpath($opts->dir_wsdl);
         $this->key_file = $opts->key_file;
         $this->crt_file = $opts->crt_file;
         $this->crt_pass = $opts->crt_pass;
@@ -70,7 +70,7 @@ class Afip
     private function getWSDL($serv) {
         $wspfx = '';
         if ($this->homo) $wspfx = '-homo';
-        $wsdl_file = $this->wsdl."/$serv"."$wspfx.wsdl";
+        $wsdl_file = $this->dir_wsdl."/$serv"."$wspfx.wsdl";
         if (!file_exists($wsdl_file)) {
             $url = $this->url->{$serv}."?wsdl";
             $wsdl = file_get_contents($url);
@@ -86,9 +86,9 @@ class Afip
         
         $wspfx = '';
         if ($this->homo) $wspfx = '-homo';
-        $ta_file  = $this->dir."/ta-$serv$wspfx.xml";
-        $tra_file = $this->dir."/tra-$serv$wspfx.xml";
-        $tra_temp = $this->dir."/tra-$serv$wspfx.tmp";
+        $ta_file  = $this->dir_auth."/ta-$serv$wspfx.xml";
+        $tra_file = $this->dir_auth."/tra-$serv$wspfx.xml";
+        $tra_temp = $this->dir_auth."/tra-$serv$wspfx.tmp";
         
         $ta = null;
         if (file_exists($ta_file)) {

@@ -1,4 +1,31 @@
 <?php
+/**
+# AFIP.PHP - 2019 KaisarCode.com
+Clase conectora con servicios de Afip.
+
+Esta clase incluye los servicios más utilizados:
+- Facturación electrónica A, B, C, E, T, etc...
+- Consultas de padrón tributario.
+
+Además se agregan 2 extras:
+- Bonos fiscales
+- Seguros de caución
+
+Y la seguiré actualizando con el tiempo.
+(También se aceptan contribuciones).
+
+Para conocer más acerca de los servicios de Afip, diríjase a:
+https://www.afip.gob.ar/ws/documentacion/
+
+Para conocer las definiciones de más servicios, diríjase a:
+https://www.afip.gob.ar/ws/documentacion/catalogo.asp
+
+Este software es de dominio público, bajo licencia "The Unlicense".
+Esto significa que puede extenderlo a gusto y utilizarlo
+en cualquier proyecto, sea comercial o no.
+Para más información revise la licencia que acompaña este archivo, o
+diríjase a https://unlicense.org/
+*/
 class Afip
 {
     private $url;
@@ -33,10 +60,12 @@ class Afip
         $this->url->wsfe = 'https://servicios1.afip.gov.ar/wsfev1/service.asmx'; // A, B, C Sin detalle
         $this->url->wsmtxca = 'https://serviciosjava.afip.gob.ar/wsmtxca/services/MTXCAService'; // A, B Con detalle
         $this->url->wsfex = 'https://servicios1.afip.gov.ar/wsfexv1/service.asmx'; // E (Exportación)
+        $this->url->wsct = 'https://serviciosjava.afip.gob.ar/wsct/CTService'; // T (Turismo)
+        $this->url->padron_a5 = 'https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5'; // Consulta padrón tributario (Datos de la persona)
+        
         $this->url->wsbfev = 'https://servicios1.afip.gov.ar/wsbfev1/service.asmx'; // Bonos fiscales
         $this->url->wsseg = 'https://servicios1.afip.gov.ar/wsseg/service.asmx'; // Seguros de caución
-        $this->url->wsct = 'https://serviciosjava.afip.gob.ar/wsct/CTService'; // T (Turismo)
-        $this->url->wsci = 'https://aws.afip.gov.ar/sr-padron/webservices/personaServiceA5'; // Constancia de inscripción
+        
         
         // URLs homologación
         if ($this->homo) {
@@ -47,7 +76,7 @@ class Afip
             $this->url->wsbfev = 'https://wswhomo.afip.gov.ar/wsbfev1/service.asmx';
             $this->url->wsseg = 'https://wswhomo.afip.gov.ar/wsseg/service.asmx';
             $this->url->wsct = 'https://fwshomo.afip.gov.ar/wsct/CTService';
-            $this->url->wsci = 'https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5';
+            $this->url->padron_a5 = 'https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5';
         }
         
         return $this;
@@ -210,7 +239,7 @@ class Afip
                         }
                     }
                     if (
-                    $serv == 'wsci'
+                    $serv == 'padron_a5'
                     ) {
                         if (!isset($params['token'])) {
                             $params['token'] = $creds->token;

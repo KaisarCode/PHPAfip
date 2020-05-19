@@ -25,16 +25,16 @@ class Afip
         if (!isset($opts->cuit)) $opts->cuit = '';
         if (!isset($opts->dir_auth)) $opts->dir_auth = '';
         if (!isset($opts->dir_wsdl)) $opts->dir_wsdl = '';
-        if (!isset($opts->key_file)) $opts->key_file = 'key';
-        if (!isset($opts->crt_file)) $opts->crt_file = 'crt';
-        if (!isset($opts->crt_pass)) $opts->crt_pass = '';
+        if (!isset($opts->key_file)) $opts->key_file = '';
+        if (!isset($opts->key_pass)) $opts->key_pass = '';
+        if (!isset($opts->crt_file)) $opts->crt_file = '';
         
         $this->homo = (boolean) $opts->homo;
         $this->dir_auth = realpath($opts->dir_auth);
         $this->dir_wsdl = realpath($opts->dir_wsdl);
         $this->key_file = $opts->key_file;
+        $this->key_pass = $opts->key_pass;
         $this->crt_file = $opts->crt_file;
-        $this->crt_pass = $opts->crt_pass;
         $this->cuit = $opts->cuit;
         $this->cuit = str_replace('-', '', $this->cuit);
         
@@ -116,7 +116,7 @@ class Afip
             $tra->addChild('service', $serv);
             $tra->asXML($tra_file);
             $sign = openssl_pkcs7_sign($tra_file, $tra_temp, "file://".$this->crt_file,
-                array("file://".$this->key_file, $this->crt_pass),
+                array("file://".$this->key_file, $this->key_pass),
                 array(), !PKCS7_DETACHED
             );
             if ($sign) {

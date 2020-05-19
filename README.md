@@ -31,12 +31,13 @@ https://www.afip.gob.ar/ws/documentacion/catalogo.asp
 include('afip.php');
 $afip = new Afip(array(
     'homo' => true,
-    'cuit' => 'XX-XXXXXXXX-X',
-    'dir_auth' => 'data',
-    'dir_wsdl' => 'wsdl',
-    'key_file' => 'path/to/rsa_key',
-    'crt_file' => 'path/to/cert.crt',
-    'crt_pass' => ''
+    'cuit' => 'XX-XXXXXXXX-X', // CUIT del cliente
+    'dir_auth' => 'data',      // Directorio donde se guardan los tokens
+    'dir_wsdl' => 'wsdl',      // Directorio donde se guardan los WSDL
+    'key_file' => 'path/to/rsa_key', // Llave privada rsa
+    'key_pass' => ''                 // Contraseña llave rsa
+    'crt_file' => 'path/to/cert.crt' // Certificado generado por Afip
+    
 ));
 $res = $afip->req('wsfe', 'FEParamGetTiposMonedas');
 

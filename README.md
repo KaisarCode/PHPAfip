@@ -30,7 +30,7 @@ https://www.afip.gob.ar/ws/documentacion/catalogo.asp
 <?php
 include('afip.php');
 $afip = new Afip(array(
-    'homo' => true,
+    'homo' => true,            // Entorno de pruebas
     'cuit' => 'XX-XXXXXXXX-X', // CUIT del cliente
     'dir_auth' => 'auth',      // Directorio para guardar los tokens (Debe existir)
     'dir_wsdl' => 'wsdl',      // Directorio para guardar los WSDL (Debe existir)

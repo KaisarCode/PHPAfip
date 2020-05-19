@@ -32,8 +32,8 @@ include('afip.php');
 $afip = new Afip(array(
     'homo' => true,
     'cuit' => 'XX-XXXXXXXX-X', // CUIT del cliente
-    'dir_auth' => 'data',      // Directorio donde se guardan los tokens
-    'dir_wsdl' => 'wsdl',      // Directorio donde se guardan los WSDL
+    'dir_auth' => 'data',      // Directorio para guardar los tokens
+    'dir_wsdl' => 'wsdl',      // Directorio para guardar los WSDL
     'key_file' => 'path/to/rsa_key', // Llave privada rsa
     'key_pass' => ''                 // Contraseña llave rsa
     'crt_file' => 'path/to/cert.crt' // Certificado generado por Afip

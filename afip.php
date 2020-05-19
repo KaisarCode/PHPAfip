@@ -73,10 +73,13 @@ class Afip
             $this->url->wsfe = 'https://wswhomo.afip.gov.ar/wsfev1/service.asmx';
             $this->url->wsmtxca = 'https://fwshomo.afip.gov.ar/wsmtxca/services/MTXCAService';
             $this->url->wsfex = 'https://wswhomo.afip.gov.ar/wsfexv1/service.asmx';
-            $this->url->wsbfev = 'https://wswhomo.afip.gov.ar/wsbfev1/service.asmx';
-            $this->url->wsseg = 'https://wswhomo.afip.gov.ar/wsseg/service.asmx';
             $this->url->wsct = 'https://fwshomo.afip.gov.ar/wsct/CTService';
             $this->url->padron_a5 = 'https://awshomo.afip.gov.ar/sr-padron/webservices/personaServiceA5';
+            
+            $this->url->wsbfev = 'https://wswhomo.afip.gov.ar/wsbfev1/service.asmx';
+            $this->url->wsseg = 'https://wswhomo.afip.gov.ar/wsseg/service.asmx';
+            
+            
         }
         
         return $this;
